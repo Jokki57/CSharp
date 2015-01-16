@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.IO;
+using System.Windows.Input;
 
 namespace UpdateChecker.Classes
 {
@@ -38,6 +39,15 @@ namespace UpdateChecker.Classes
             this.pathTextBox = pathTextBox;
             this.linkTextBox.TextChanged += linkTextBox_TextChanged;
             this.pathTextBox.TextChanged += pathTextBox_TextChanged;
+			this.linkTextBox.KeyDown += (object sender, KeyEventArgs args) =>
+			{
+				System.Windows.Forms.KeysConverter converter = new System.Windows.Forms.KeysConverter();
+				if (!Char.IsDigit(converter.ConvertToString(args.Key)[0]))
+				{
+					args.Handled = true;
+				}				
+			};
+			//this.pathTextBox.Key += 
 
             watcher = new FileSystemWatcher();
             Path = path;
@@ -45,9 +55,7 @@ namespace UpdateChecker.Classes
             watcher.Changed += watcher_Changed;
         }
 
-       // internal SetFullPath()
-
-        private void watcher_Changed(object sender, FileSystemEventArgs e)
+        private void watcher_Changed(object sender, FileSystemEventArgs args)
         {
             if (NeedUpdate != null)
             {
@@ -55,7 +63,7 @@ namespace UpdateChecker.Classes
             }
         }
 
-        private void pathTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void pathTextBox_TextChanged(object sender, TextChangedEventArgs args)
         {
             if (PathChanged != null)
             {
@@ -63,7 +71,7 @@ namespace UpdateChecker.Classes
             }
         }
 
-        private void linkTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void linkTextBox_TextChanged(object sender, TextChangedEventArgs args)
         {
             if (LinkChanged != null)
             {

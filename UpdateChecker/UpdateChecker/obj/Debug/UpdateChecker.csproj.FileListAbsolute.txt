@@ -11,3 +11,14 @@ c:\users\user\documents\visual studio 2013\Projects\UpdateChecker\UpdateChecker\
 c:\users\user\documents\visual studio 2013\Projects\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.csproj.GenerateResource.Cache
 c:\users\user\documents\visual studio 2013\Projects\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.exe
 c:\users\user\documents\visual studio 2013\Projects\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.pdb
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\bin\Debug\UpdateChecker.exe.config
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.exe
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.pdb
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.csprojResolveAssemblyReference.cache
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\MainWindow.baml
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\MainWindow.g.cs
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\App.g.cs
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker_MarkupCompile.cache
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.g.resources
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.Properties.Resources.resources
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.csproj.GenerateResource.Cache

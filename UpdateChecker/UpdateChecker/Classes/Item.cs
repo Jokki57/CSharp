@@ -7,11 +7,11 @@ using System.Windows.Controls;
 
 namespace UpdateChecker.Classes
 {
-    interface Item
+    internal abstract class Item
     {
-        internal string Path { get; set; }
-        internal string Link { get; set; }
-        internal TextBlock linkTextBlock { get; }
-        internal TextBlock pathTextBlock { get; }
+		internal abstract string Path { get; set; }
+		internal abstract string Link { get; set; }
+		internal abstract TextBlock linkTextBlock { get; }
+		internal TextBlock pathTextBlock { get; }
     }
 }

@@ -63,7 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\LinkAlreadyExist.cs" />
     <Compile Include="Classes\DestinationItem.cs" />
+    <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\ItemsController.cs" />
     <Compile Include="Classes\SourceItem.cs" />
     <Compile Include="Classes\Utils.cs" />

@@ -10,7 +10,7 @@ namespace UpdateChecker.Classes
 {
     internal class DestinationItem : Item
     {
-        internal string Path
+        internal override string Path
         {
             get { return path; }
             set
