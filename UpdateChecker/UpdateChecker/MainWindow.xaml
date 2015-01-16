@@ -1,0 +1,19 @@
+﻿<Window x:Class="UpdateChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Margin="10,10,0,0" Width="497" Height="100" VerticalAlignment="Top" Orientation="Horizontal" >
+            <ListBox Width="225"  Name="sourceList">
+            </ListBox>
+            <ListBox Width="225" Margin="5,0,0,0" Name="destinationList">
+
+            </ListBox>
+        </StackPanel>
+
+        <Button Margin="10,115,0,0" Content="Add source file" HorizontalAlignment="Left" Width="99" Height="29" VerticalAlignment="Top" Name="sourceButton"/>
+        <Button Margin="242,115,0,0" Content="Add destination file" HorizontalAlignment="Left" Width="128" Height="29" VerticalAlignment="Top" Name="destinationButton"/>
+
+
+    </Grid>
+</Window>
