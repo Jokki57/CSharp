@@ -24,17 +24,19 @@ namespace UpdateChecker
     public partial class MainWindow : Window
     {
         private ItemsController itemsController;
+		private System.Windows.Forms.NotifyIcon notifyIcon;
         public MainWindow()
         {
             InitializeComponent();
 
-            //System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
-            //ni.Visible = true;
-            //ni.DoubleClick += delegate(object sender, EventArgs args)
-            //{
-            //    this.Show();
-            //    this.WindowState = WindowState.Normal;
-            //};
+			notifyIcon = new System.Windows.Forms.NotifyIcon();
+			notifyIcon.Icon = new System.Drawing.Icon("../../Icon1.ico");
+			notifyIcon.Text = "File tracker";
+			notifyIcon.DoubleClick += (sender, args) =>
+			{
+				this.Show();
+				this.WindowState = WindowState.Normal;
+			};
 
             itemsController = new ItemsController(sourceList, destinationList);
 
@@ -78,13 +80,18 @@ namespace UpdateChecker
             if (this.WindowState == System.Windows.WindowState.Minimized)
             {
                 this.Hide();
+				notifyIcon.Visible = true;
             }
+			else if (this.WindowState == System.Windows.WindowState.Normal)
+			{
+				notifyIcon.Visible = false;
+			}
         }
 
-        private void createListField(ListBox list)
-        {
-            StackPanel stack = new StackPanel();
-
-        }
+		protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+		{
+			base.OnClosing(e);
+			notifyIcon.Visible = false;
+		}
     }
 }
