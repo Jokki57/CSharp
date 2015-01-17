@@ -22,3 +22,5 @@ D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker_MarkupCompil
 D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.g.resources
 D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.Properties.Resources.resources
 D:\MyGit\CSharp\UpdateChecker\UpdateChecker\obj\Debug\UpdateChecker.csproj.GenerateResource.Cache
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\bin\Debug\UpdateChecker.exe
+D:\MyGit\CSharp\UpdateChecker\UpdateChecker\bin\Debug\UpdateChecker.pdb

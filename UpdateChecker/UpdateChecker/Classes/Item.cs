@@ -10,8 +10,8 @@ namespace UpdateChecker.Classes
     internal abstract class Item
     {
 		internal abstract string Path { get; set; }
-		internal abstract string Link { get; set; }
-		internal abstract TextBlock linkTextBlock { get; }
-		internal TextBlock pathTextBlock { get; }
+		internal abstract int Link { get; set; }
+		internal abstract TextBox LinkTextBox { get; }
+		internal abstract TextBox PathTextBox { get; }
     }
 }

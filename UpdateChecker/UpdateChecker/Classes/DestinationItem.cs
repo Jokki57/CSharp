@@ -19,9 +19,9 @@ namespace UpdateChecker.Classes
                 pathTextBox.Text = value;
             }
         }
-        internal int Link { get; set; }
-        internal TextBox PathTextBox { get { return pathTextBox; } }
-        internal TextBox LinkTextBox { get { return linkTextBox; } }
+        internal override int Link { get; set; }
+        internal override TextBox PathTextBox { get { return pathTextBox; } }
+        internal override TextBox LinkTextBox { get { return linkTextBox; } }
 
         private string path;
         private TextBox linkTextBox;
@@ -29,7 +29,6 @@ namespace UpdateChecker.Classes
 
         internal event EventHandler LinkChanged;
         internal event EventHandler PathChanged;
-        internal event EventHandler NeedUpdate;
 
         internal DestinationItem(string path, TextBox linkTextBox, TextBox pathTextBox)
         {

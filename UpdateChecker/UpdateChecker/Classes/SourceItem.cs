@@ -11,7 +11,7 @@ namespace UpdateChecker.Classes
 {
     internal class SourceItem : Item
     {
-        internal string Path { get { return path; } 
+        internal override string Path { get { return path; } 
             set 
             { 
                 path = value;
@@ -20,9 +20,9 @@ namespace UpdateChecker.Classes
                 pathTextBox.Text = value;
             }
         }
-        internal int Link { get; set; }
-        internal TextBox PathTextBox { get { return pathTextBox; } }
-        internal TextBox LinkTextBox { get { return linkTextBox; } }
+        internal override int Link { get; set; }
+        internal override TextBox PathTextBox { get { return pathTextBox; } }
+        internal override TextBox LinkTextBox { get { return linkTextBox; } }
 
         private string path;
         private TextBox linkTextBox;
@@ -39,15 +39,10 @@ namespace UpdateChecker.Classes
             this.pathTextBox = pathTextBox;
             this.linkTextBox.TextChanged += linkTextBox_TextChanged;
             this.pathTextBox.TextChanged += pathTextBox_TextChanged;
-			this.linkTextBox.KeyDown += (object sender, KeyEventArgs args) =>
+			this.linkTextBox.PreviewTextInput += (object sender, TextCompositionEventArgs args) =>
 			{
-				System.Windows.Forms.KeysConverter converter = new System.Windows.Forms.KeysConverter();
-				if (!Char.IsDigit(converter.ConvertToString(args.Key)[0]))
-				{
-					args.Handled = true;
-				}				
+				args.Handled = "0123456789".IndexOf(args.Text) == -1;		
 			};
-			//this.pathTextBox.Key += 
 
             watcher = new FileSystemWatcher();
             Path = path;

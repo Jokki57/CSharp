@@ -54,6 +54,8 @@ namespace UpdateChecker.Classes
             TextBox pathTextBox = new TextBox();
             StackPanel stackPanel = new StackPanel();
             DestinationItem destinationItem = new DestinationItem(path, linkTextBox, pathTextBox);
+			destinationItem.LinkChanged += LinkChangedHandler;
+			destinationItem.PathChanged += PathChangedHandler;
             destinationsCollection.Add(destinationItem);
 
             stackPanel.Orientation = Orientation.Horizontal;
@@ -74,7 +76,15 @@ namespace UpdateChecker.Classes
             if (sender is SourceItem)
             {
                 SourceItem item = sender as SourceItem;
-                int link = int.Parse(item.LinkTextBox.Text);
+				int link;
+				if (!item.LinkTextBox.Text.Equals(""))
+				{
+					link = int.Parse(item.LinkTextBox.Text);
+				}
+				else
+				{
+					return;
+				}
                 try
                 {
                     foreach (SourceItem sItem in sourcesCollection)
@@ -83,15 +93,15 @@ namespace UpdateChecker.Classes
                         {
                             if (link == sItem.Link)
                             {
-                                throw new LinkAlreadyExist();
+                                throw new LinkAlreadyExistException();
                             }
                         }
                     }
                     item.Link = link;
                 }
-                catch (LinkAlreadyExist exception)
+                catch (LinkAlreadyExistException exception)
                 {
-                    MessageBox.Show("This link already exist");
+                    MessageBox.Show(exception.Message);
                     item.LinkTextBox.Text = "";
                 }
             }
@@ -117,7 +127,7 @@ namespace UpdateChecker.Classes
         private void PathChangedHandler(object sender, EventArgs args)
         {
             Item item = sender as Item;
-            item.Path = item.pathTextBlock.Text;
+            item.Path = item.PathTextBox.Text;
         }
 
         private void NeedUpdateHandler(object sender, EventArgs args)
@@ -130,7 +140,15 @@ namespace UpdateChecker.Classes
             {
                 foreach (DestinationItem destItem in linkedItems)
                 {
-                    File.Copy(item.Path, destItem.Path, true);
+					try
+					{
+						File.Copy(item.Path, destItem.Path, true);
+					}
+					catch (Exception exception)
+					{
+						MessageBox.Show(exception.Message);
+					}
+                    
                 }
             }
         }
