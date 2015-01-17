@@ -38,7 +38,7 @@ namespace UpdateChecker
 
             itemsController = new ItemsController(sourceList, destinationList);
 
-            sourceButton.Click += (sender, args) =>
+            sourceButtonAdd.Click += (sender, args) =>
             {
                 System.Windows.Forms.OpenFileDialog openFile = new System.Windows.Forms.OpenFileDialog();
                 if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -46,7 +46,7 @@ namespace UpdateChecker
                     itemsController.AddSource(openFile.FileName);
                 }
             };
-            destinationButton.Click += (sender, args) =>
+            destinationButtonAdd.Click += (sender, args) =>
             {
                 System.Windows.Forms.OpenFileDialog openFile = new System.Windows.Forms.OpenFileDialog();
                 if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -54,6 +54,22 @@ namespace UpdateChecker
                     itemsController.AddDestination(openFile.FileName);
                 }
             };
+			sourceButtonRemove.Click += (sender, args) =>
+			{
+				int index = sourceList.SelectedIndex;
+				if (index != -1)
+				{
+					itemsController.RemoveSource(index);
+				}
+			};
+			destinationButtonRemove.Click += (sender, args) =>
+			{
+				int index = destinationList.SelectedIndex;
+				if (index != -1)
+				{
+					itemsController.RemoveDestination(index);
+				}
+			};
         }
 
         protected override void OnStateChanged(EventArgs e)

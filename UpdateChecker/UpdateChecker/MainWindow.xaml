@@ -1,18 +1,21 @@
 ﻿<Window x:Class="UpdateChecker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="File Tracker" Height="205" Width="525" Icon="Icon1.ico" ResizeMode="CanMinimize">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Margin="10,10,0,0" Width="497" Height="100" VerticalAlignment="Top" Orientation="Horizontal" >
-            <ListBox Width="225"  Name="sourceList">
-            </ListBox>
-            <ListBox Width="225" Margin="5,0,0,0" Name="destinationList">
+        <StackPanel HorizontalAlignment="Left" Margin="10,26,0,0" Width="497" Height="100" VerticalAlignment="Top" Orientation="Horizontal" >
+            <ListBox Width="245"  Name="sourceList"/>
+            <ListBox Width="245" Margin="5,0,0,0" Name="destinationList">
 
             </ListBox>
         </StackPanel>
 
-        <Button Margin="10,115,0,0" Content="Add source file" HorizontalAlignment="Left" Width="99" Height="29" VerticalAlignment="Top" Name="sourceButton"/>
-        <Button Margin="242,115,0,0" Content="Add destination file" HorizontalAlignment="Left" Width="128" Height="29" VerticalAlignment="Top" Name="destinationButton"/>
+        <Button Margin="10,131,0,0" Content="Add field" HorizontalAlignment="Left" Width="70" Height="25" VerticalAlignment="Top" Name="sourceButtonAdd"/>
+        <Button Margin="261,131,0,0" Content="Add field" HorizontalAlignment="Left" Width="70" Height="25" VerticalAlignment="Top" Name="destinationButtonAdd"/>
+        <Label Content="Source files" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+        <Label Content="Destination files" HorizontalAlignment="Left" Margin="261,0,0,0" VerticalAlignment="Top"/>
+        <Button Margin="85,131,0,0" Content="Remove field" HorizontalAlignment="Left" Width="85" Height="25" VerticalAlignment="Top" x:Name="sourceButtonRemove"/>
+        <Button Margin="336,131,0,0" Content="Remove field" HorizontalAlignment="Left" Width="85" Height="25" VerticalAlignment="Top" x:Name="destinationButtonRemove"/>
 
 
     </Grid>

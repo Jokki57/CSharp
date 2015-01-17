@@ -35,12 +35,13 @@ namespace UpdateChecker.Classes
             sourceItem.NeedUpdate += NeedUpdateHandler;
             sourcesCollection.Add(sourceItem);
 
+			stackPanel.Width = sourceList.Width - 10;
             stackPanel.Orientation = Orientation.Horizontal;
             stackPanel.Children.Add(linkTextBox);
             stackPanel.Children.Add(pathTextBox);
 
             linkTextBox.Width = 30;
-            pathTextBox.Width = 100;
+            pathTextBox.Width = stackPanel.Width - linkTextBox.Width - pathLeftMargin;
             Thickness margin = new Thickness();
             margin.Left = pathLeftMargin;
             pathTextBox.Margin = margin;
@@ -58,18 +59,59 @@ namespace UpdateChecker.Classes
 			destinationItem.PathChanged += PathChangedHandler;
             destinationsCollection.Add(destinationItem);
 
+			stackPanel.Width = destinationList.Width - 10;
             stackPanel.Orientation = Orientation.Horizontal;
             stackPanel.Children.Add(linkTextBox);
             stackPanel.Children.Add(pathTextBox);
 
             linkTextBox.Width = 30;
-            pathTextBox.Width = 100;
+			pathTextBox.Width = stackPanel.Width - linkTextBox.Width - pathLeftMargin; 
             Thickness margin = new Thickness();
             margin.Left = pathLeftMargin;
             pathTextBox.Margin = margin;
 
             destinationList.Items.Add(stackPanel);
         }
+
+		public void RemoveSource(int index)
+		{
+			StackPanel stackPanel = sourceList.Items.GetItemAt(index) as StackPanel;
+			sourceList.Items.Remove(stackPanel);
+
+			SourceItem item = sourcesCollection[index];
+			stackPanel.Children.Remove(item.LinkTextBox);
+			stackPanel.Children.Remove(item.PathTextBox);
+			item.UnsubscribeFromEvents();
+			item.LinkChanged -= LinkChangedHandler;
+			item.PathChanged -= PathChangedHandler;
+			item.NeedUpdate -= NeedUpdateHandler;
+			sourcesCollection.Remove(item);
+		}
+
+		public void RemoveDestination(int index)
+		{
+			StackPanel stackPanel = destinationList.Items.GetItemAt(index) as StackPanel;
+			destinationList.Items.Remove(stackPanel);
+
+			DestinationItem item = destinationsCollection[index];
+			stackPanel.Children.Remove(item.LinkTextBox);
+			stackPanel.Children.Remove(item.PathTextBox);
+			item.UnsubscribeFromEvents();
+			item.LinkChanged -= LinkChangedHandler;
+			item.PathChanged -= PathChangedHandler;
+			destinationsCollection.Remove(item);
+
+			List<DestinationItem> list;
+			usingDestinations.TryGetValue(item.Link, out list);
+			if (list != null)
+			{
+				list.Remove(item);
+				if (list.Count == 0)
+				{
+					usingDestinations.Remove(item.Link);
+				}
+			}
+		}
 
         private void LinkChangedHandler(object sender, EventArgs args)
         {
@@ -108,8 +150,16 @@ namespace UpdateChecker.Classes
             else if (sender is DestinationItem)
             {
                 DestinationItem item = sender as DestinationItem;
-                int link = int.Parse(item.LinkTextBox.Text);
-                item.Link = link;
+				int link;
+				if (!item.LinkTextBox.Text.Equals(""))
+				{
+					link = int.Parse(item.LinkTextBox.Text);
+				}
+				else
+				{
+					return;
+				}
+				item.Link = link;
                 List<DestinationItem> list;
                 usingDestinations.TryGetValue(link, out list);
                 if (list != null)

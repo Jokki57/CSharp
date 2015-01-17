@@ -13,5 +13,7 @@ namespace UpdateChecker.Classes
 		internal abstract int Link { get; set; }
 		internal abstract TextBox LinkTextBox { get; }
 		internal abstract TextBox PathTextBox { get; }
+
+		internal abstract void UnsubscribeFromEvents();
     }
 }

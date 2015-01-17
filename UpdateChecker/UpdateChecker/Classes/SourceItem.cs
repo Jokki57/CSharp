@@ -39,16 +39,26 @@ namespace UpdateChecker.Classes
             this.pathTextBox = pathTextBox;
             this.linkTextBox.TextChanged += linkTextBox_TextChanged;
             this.pathTextBox.TextChanged += pathTextBox_TextChanged;
-			this.linkTextBox.PreviewTextInput += (object sender, TextCompositionEventArgs args) =>
-			{
-				args.Handled = "0123456789".IndexOf(args.Text) == -1;		
-			};
+			this.linkTextBox.PreviewTextInput += linkTextBox_PreviewTextInput;
 
             watcher = new FileSystemWatcher();
             Path = path;
             watcher.EnableRaisingEvents = true;
             watcher.Changed += watcher_Changed;
         }
+
+		internal override void UnsubscribeFromEvents()
+		{
+			watcher.Changed -= watcher_Changed;
+			this.linkTextBox.TextChanged -= linkTextBox_TextChanged;
+			this.pathTextBox.TextChanged -= pathTextBox_TextChanged;
+			this.linkTextBox.PreviewTextInput -= linkTextBox_PreviewTextInput;
+		}
+
+		private void linkTextBox_PreviewTextInput(object sender, TextCompositionEventArgs args)
+		{
+			args.Handled = "0123456789".IndexOf(args.Text) == -1;
+		}
 
         private void watcher_Changed(object sender, FileSystemEventArgs args)
         {
